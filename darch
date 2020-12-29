@@ -282,7 +282,7 @@ uefi=$( ls /sys/firmware/efi/ | grep -ic efivars )
 if [ $uefi == 1 ]
 then
 clear
-arch-chroot /mnt /bin/bash -c "pacman -S grub efibootmgr os-prober dosfstools --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -S grub efibootmgr os-prober dosfstools ntfs-3g --noconfirm"
 echo '' 
 echo 'Instalando EFI System >> bootx64.efi' 
 arch-chroot /mnt /bin/bash -c 'grub-install --target=x86_64-efi --efi-directory=/efi --removable' 
@@ -306,7 +306,7 @@ sleep 4
 
 else
 clear
-arch-chroot /mnt /bin/bash -c "pacman -S grub os-prober --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -S grub os-prober ntfs-3g --noconfirm"
 echo '' 
 arch-chroot /mnt /bin/bash -c "grub-install --target=i386-pc $disco"
 
