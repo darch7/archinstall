@@ -183,10 +183,10 @@ clear
 echo ""
 echo "Archivo FSTAB"
 echo ""
-echo "genfstab -p /mnt >> /mnt/etc/fstab"
+echo "genfstab -U -p /mnt >> /mnt/etc/fstab"
 echo ""
 
-genfstab -p /mnt >> /mnt/etc/fstab
+genfstab -U -p /mnt >> /mnt/etc/fstab
 cat /mnt/etc/fstab
 sleep 4
 clear
