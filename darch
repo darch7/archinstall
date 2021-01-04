@@ -367,7 +367,7 @@ arch-chroot /mnt /bin/bash -c "sudo pacman -S xf86-video-intel vulkan-intel mesa
 arch-chroot /mnt /bin/bash -c "pacman -S xorg xorg-apps xorg-xinit xorg-twm xterm xorg-xclock --noconfirm"
 
 #UTILIDADES
-arch-chroot /mnt /bin/bash -c "pacman -S git wget neofetch lsb-release xdg-user-dirs android-file-transfer android-tools android-udev msmtp libmtp libcddb gvfs gvfs-afc gvfs-smb gvfs-gphoto2 gvfs-mtp gvfs-goa gvfs-nfs gvfs-google dosfstools jfsutils f2fs-tools btrfs-progs exfat-utils ntfs-3g reiserfsprogs udftools xfsprogs nilfs-utils polkit gpart mtools ffmpeg aom libde265 x265 x264 libmpeg2 xvidcore libtheora libvpx schroedinger sdl gstreamer gst-plugins-bad gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-ugly xine-lib libdvdcss libdvdread dvd+rw-tools lame --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -S p7zip unrar zip unzip gzip bzip2 arj lzop git wget neofetch lsb-release xdg-user-dirs android-file-transfer android-tools android-udev msmtp libmtp libcddb gvfs gvfs-afc gvfs-smb gvfs-gphoto2 gvfs-mtp gvfs-goa gvfs-nfs gvfs-google dosfstools jfsutils f2fs-tools btrfs-progs exfat-utils ntfs-3g reiserfsprogs udftools xfsprogs nilfs-utils polkit gpart mtools ffmpeg aom libde265 x265 x264 libmpeg2 xvidcore libtheora libvpx schroedinger sdl gstreamer gst-plugins-bad gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-ugly xine-lib libdvdcss libdvdread dvd+rw-tools lame --noconfirm"
 arch-chroot /mnt /bin/bash -c "xdg-user-dirs-update"
 clear
 echo ""
@@ -375,10 +375,10 @@ arch-chroot /mnt /bin/bash -c "ls -l /home/$user"
 sleep 5
 
 #AUDIO
-arch-chroot /mnt /bin/bash -c "pacman -S pulseaudio pavucontrol --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -S pulseaudio pavucontrol alsa-plugins alsa-utils --noconfirm"
 
 #FONTS (TIPOGRAFIAS)
-arch-chroot /mnt /bin/bash -c "pacman -S gnu-free-fonts ttf-hack ttf-inconsolata --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -S ttf-dejavu ttf-liberation xorg-fonts-type1 ttf-bitstream-vera gnu-free-fonts ttf-hack ttf-inconsolata --noconfirm"
 
 #NAVEGADOR WEB
 #arch-chroot /mnt /bin/bash -c "pacman -S chromium --noconfirm"
