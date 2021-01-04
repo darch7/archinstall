@@ -403,11 +403,6 @@ arch-chroot /mnt /bin/bash -c "pacman -S ttf-dejavu ttf-liberation xorg-fonts-ty
       sleep 5
       clear
       
-#INSTALAR YAY	
-arch-chroot /mnt /bin/bash -c "git clone https://aur.archlinux.org/yay.git ; cd yay ; makepkg -si ; cd ~ ; rm -rf yay"
-sleep 4
-clear
-
 #DESMONTAR Y REINICIAR
 umount -R /mnt
 swapoff -a
