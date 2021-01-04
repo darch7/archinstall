@@ -4,3 +4,6 @@ para seleccionar el disco si o si debe ser asi /dev/sda ; /dev/sdb/ ,etc, sino s
 
 
 para ejecutar el script      ./darch
+
+
+nota: el script esta solo para intel si tienes amd nvidia o otros debes descomentar en el script lo que quieres instalar no me gaste en un menu porque es para uso personal. Todo lo que instala aparecera en la tty. Ya viene con codecs y controadores para ceulares, codecs multimedia, xorg y drivers wifi.
