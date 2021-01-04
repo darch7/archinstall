@@ -207,7 +207,7 @@ clear
 #HOST
 clear
 #NOMBRE DEL COMPUTADOR
-hostname=SARS
+hostname=ArchLinux
 echo "$hostname" > /mnt/etc/hostname
 echo "127.0.1.1 $hostname.localdomain $hostname" > /mnt/etc/hosts
 clear
