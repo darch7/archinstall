@@ -42,7 +42,7 @@ read -p "Introduce Nombre del Equipo (host): " hostname
 echo ""
 read -p "Introduce la clave de $user: " userpasswd
 echo ""
-read -p "Introduce tu ubicación (Eg.es_PE.UTF-8 / es_MX.UTF-8 / es_CO.UTF-8): " userpais
+read -p "Introduce tu ubicación (Eg.es_PE.UTF-8 / es_MX.UTF-8 / es_AR.UTF-8): " userpais
 echo ""
 echo ''
 echo "Selección de Disco: $disco"
