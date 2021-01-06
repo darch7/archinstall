@@ -404,8 +404,11 @@ arch-chroot /mnt /bin/bash -c "pacman -S ttf-dejavu ttf-liberation xorg-fonts-ty
       sleep 5
       clear
       
-# INSTALAR YAY	
+# INSTALAR YAY
+sed -i "80i $user NOPASSWD"  /mnt/etc/sudoers	
 echo "cd && git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si --noconfirm && cd && rm -rf yay-bin" | arch-chroot /mnt /bin/bash -c "su $user"
+sed -i "80i $user ALL=(ALL) ALL"  /mnt/etc/sudoers
+
 sleep 5
 
 #DESMONTAR Y REINICIAR
