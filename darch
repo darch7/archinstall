@@ -34,15 +34,15 @@ echo "print devices" | parted | grep /dev/ | awk '{if (NR!=1) {print}}'
 echo ''
 read -p "Introduce tu disco a instalar Arch: " disco
 echo ""
-read -p "Introduce la clave de Administrador: " rootpasswd
+read -p "Introduce la clave Root: " rootpasswd
 echo ""
 read -p "Introduce Nombre usuario Nuevo: " user
 echo ""
-read -p "Introduce Nombre del Equipo (host): " hostname
-echo ""
 read -p "Introduce la clave de $user: " userpasswd
 echo ""
-read -p "Introduce tu ubicación (Eg.es_PE.UTF-8 / es_MX.UTF-8 / es_AR.UTF-8): " userpais
+read -p "Introduce Nombre del Equipo (host): " hostname
+echo ""
+read -p "Introduce tu ubicación, Ejemplo (es_PE.UTF-8 / es_MX.UTF-8 / es_AR.UTF-8): " userpais
 echo ""
 echo ''
 echo "Selección de Disco: $disco"
@@ -266,7 +266,7 @@ clear
 echo ""
 echo "Actualizando lista de MirrorList"
 echo ""
-arch-chroot /mnt /bin/bash -c "reflector --verbose --latest 10 --sort rate --save /etc/pacman.d/mirrorlist"
+arch-chroot /mnt /bin/bash -c "reflector --verbose --latest 15 --sort rate --save /etc/pacman.d/mirrorlist"
 clear
 cat /mnt/etc/pacman.d/mirrorlist
 sleep 3
@@ -376,7 +376,7 @@ arch-chroot /mnt /bin/bash -c "ls -l /home/$user"
 sleep 5
 
 #AUDIO
-arch-chroot /mnt /bin/bash -c "pacman -S pulseaudio pavucontrol alsa-plugins alsa-utils --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -S pulseaudio pulseaudio-alsa pavucontrol alsa-plugins alsa-utils --noconfirm"
 
 #FONTS (TIPOGRAFIAS)
 arch-chroot /mnt /bin/bash -c "pacman -S ttf-dejavu ttf-liberation xorg-fonts-type1 ttf-bitstream-vera gnu-free-fonts ttf-hack ttf-inconsolata --noconfirm"
