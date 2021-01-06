@@ -220,10 +220,11 @@ clear
 
 #USUARIO Y ADMIN
 arch-chroot /mnt /bin/bash -c "(echo $rootpasswd ; echo $rootpasswd) | passwd root"
-arch-chroot /mnt /bin/bash -c "useradd -m -g users -s /bin/bash $user"
+arch-chroot /mnt /bin/bash -c "groupadd wheel"
+arch-chroot /mnt /bin/bash -c "useradd -m -g users -G wheel -s /bin/bash $user"
 arch-chroot /mnt /bin/bash -c "(echo $userpasswd ; echo $userpasswd) | passwd $user"
 
-sed -i "80i $user ALL=(ALL) NOPASSWD: ALL"  /mnt/etc/sudoers
+sed -i "82c %wheel ALL=(ALL) NOPASSWD: ALL"  /mnt/etc/sudoers
 
 #ACTUALIZACIÓN DE IDIOMA Y ZONA HORARIA
 echo "" 
@@ -406,7 +407,7 @@ arch-chroot /mnt /bin/bash -c "pacman -S ttf-dejavu ttf-liberation xorg-fonts-ty
       
 # INSTALAR YAY
 echo "cd && git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si --noconfirm && cd && rm -rf yay-bin" | arch-chroot /mnt /bin/bash -c "su $user"
-sed -i "80c $user ALL=(ALL) ALL"  /mnt/etc/sudoers
+sed -i "82c %wheel ALL=(ALL) ALL"  /mnt/etc/sudoers
 
 sleep 5
 
