@@ -38,6 +38,8 @@ read -p "Introduce la clave de Administrador: " rootpasswd
 echo ""
 read -p "Introduce Nombre usuario Nuevo: " user
 echo ""
+read -p "Introduce Nombre del Equipo (host): " hostname
+echo ""
 read -p "Introduce la clave de $user: " userpasswd
 echo ""
 read -p "Introduce tu ubicación (Eg.es_PE.UTF-8 / es_MX.UTF-8 / es_CO.UTF-8): " userpais
@@ -207,7 +209,6 @@ clear
 #HOST
 clear
 #NOMBRE DEL COMPUTADOR
-hostname=ArchLinux
 echo "$hostname" > /mnt/etc/hostname
 echo "127.0.1.1 $hostname.localdomain $hostname" > /mnt/etc/hosts
 clear
