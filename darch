@@ -406,8 +406,6 @@ arch-chroot /mnt /bin/bash -c "pacman -S ttf-dejavu ttf-liberation xorg-fonts-ty
 echo "cd && git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si --noconfirm && cd && rm -rf yay-bin" | arch-chroot /mnt /bin/bash -c "su $user"
 sed -i "82c %wheel ALL=(ALL) ALL<"  /mnt/etc/sudoers
 
-sleep 5
-
 #DESMONTAR Y REINICIAR
 umount -R /mnt
 swapoff -a
