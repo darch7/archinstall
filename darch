@@ -399,7 +399,7 @@ arch-chroot /mnt /bin/bash -c "pacman -S ttf-dejavu ttf-liberation xorg-fonts-ty
       echo -e 'EndSection' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
       echo ""
       cat /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-      sleep 5
+      sleep 3
       clear
       
 # INSTALAR YAY
