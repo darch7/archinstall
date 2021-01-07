@@ -177,6 +177,15 @@ else
 fi
 
 echo ""
+echo "Actualizando lista de MirrorList"
+echo ""
+arch-chroot /mnt /bin/bash -c "reflector --verbose --latest 15 --sort rate --save /etc/pacman.d/mirrorlist"
+clear
+cat /mnt/etc/pacman.d/mirrorlist
+sleep 3
+clear
+
+echo ""
 echo "Instalando Sistema base"
 echo ""
 pacstrap /mnt base base-devel nano reflector python rsync
@@ -263,14 +272,6 @@ arch-chroot /mnt /bin/bash -c "ntpd -qg"
 arch-chroot /mnt /bin/bash -c "hwclock --systohc"
 sleep 3
 
-clear
-echo ""
-echo "Actualizando lista de MirrorList"
-echo ""
-arch-chroot /mnt /bin/bash -c "reflector --verbose --latest 15 --sort rate --save /etc/pacman.d/mirrorlist"
-clear
-cat /mnt/etc/pacman.d/mirrorlist
-sleep 3
 clear
 
 #INSTALACION DEL KERNEL
