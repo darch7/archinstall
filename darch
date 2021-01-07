@@ -171,7 +171,7 @@ else
 	echo "Revise en punto de montaje en MOUNTPOINT"
 	echo ""
 	lsblk -l
-	sleep 4
+	sleep 3
 	clear
 	
 fi
@@ -199,7 +199,7 @@ echo ""
 
 genfstab -U -p /mnt >> /mnt/etc/fstab
 cat /mnt/etc/fstab
-sleep 4
+sleep 3
 clear
 
 #CONFIGURANDO PACMAN
@@ -248,7 +248,7 @@ echo "LANG=$userpais" > /mnt/etc/locale.conf
 echo ""
 cat /mnt/etc/locale.conf 
 cat /mnt/etc/locale.gen
-sleep 4
+sleep 3
 echo ""
 arch-chroot /mnt /bin/bash -c "export $(cat /mnt/etc/locale.conf)" 
 export $(cat /mnt/etc/locale.conf)
@@ -275,7 +275,7 @@ sleep 3
 clear
 
 #INSTALACION DEL KERNEL
-arch-chroot /mnt /bin/bash -c "pacman -S linux-firmware linux-lts linux-lts-headers mkinitcpio --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -S linux-lts linux-firmware linux-lts-headers mkinitcpio --noconfirm"
 
 #arch-chroot /mnt /bin/bash -c "pacman -S gnome-shell gdm gnome-control-center gnome-backgrounds gnome-tweaks --noconfirm"
 #arch-chroot /mnt /bin/bash -c "systemctl enable gdm"
@@ -305,7 +305,7 @@ echo ''
 echo 'Lea bien que no tenga ningún error marcado' 
 echo '> Confirme tener las IMG de linux para el arranque' 
 echo '> Confirme tener la carpeta de GRUB para el arranque' 
-sleep 4
+sleep 3
 
 else
 clear
@@ -342,20 +342,6 @@ arch-chroot /mnt /bin/bash -c "pacman -S iw wireless_tools wpa_supplicant dialog
 #INSTALACION DE DRIVERS BLUETOOTH
 arch-chroot /mnt /bin/bash -c "pacman -S bluez bluez-utils pulseaudio-bluetooth --noconfirm"
 
-#INSTALACION DE DRIVERS DE VIDEO
-
-#QEMU
-#arch-chroot /mnt /bin/bash -c "pacman -S xf86-video-fbdev mesa mesa-libgl qemu-guest-agent --noconfirm"
-
-#NVIDIA > xf86-video-nouveau
-#arch-chroot /mnt /bin/bash -c "pacman -S xf86-video-nouveau mesa mesa-libgl --noconfirm"
-
-#AMD 	> xf86-video-ati
-#arch-chroot /mnt /bin/bash -c "pacman -S xf86-video-ati mesa mesa-libgl --noconfirm"
-
-#INTEL 	> xf86-video-intel
-arch-chroot /mnt /bin/bash -c "sudo pacman -S xf86-video-intel vulkan-intel mesa lib32-mesa intel-media-driver libva-intel-driver libva-vdpau-driver libvdpau-va-gl libva-utils vdpauinfo intel-compute-runtime clinfo ocl-icd lib32-ocl-icd opencl-headers --needed --noconfirm"
-
 #SHELL
 #arch-chroot /mnt /bin/bash -c "pacman -S zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions --noconfirm"
 #SH=zsh
@@ -372,7 +358,7 @@ arch-chroot /mnt /bin/bash -c "xdg-user-dirs-update"
 clear
 echo ""
 arch-chroot /mnt /bin/bash -c "ls -l /home/$user"
-sleep 5
+sleep 3
 
 #AUDIO
 arch-chroot /mnt /bin/bash -c "pacman -S pulseaudio pulseaudio-alsa pavucontrol alsa-plugins alsa-utils --noconfirm"
@@ -407,9 +393,52 @@ arch-chroot /mnt /bin/bash -c "pacman -S ttf-dejavu ttf-liberation xorg-fonts-ty
 echo "cd && git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si --noconfirm && cd && rm -rf yay-bin" | arch-chroot /mnt /bin/bash -c "su $user"
 sed -i "82c %wheel ALL=(ALL) ALL<"  /mnt/etc/sudoers
 
+#INSTALACION DE DRIVERS DE VIDEO
+
+case $(systemd-detect-virt) in
+        oracle)
+            grafica="virtualbox-guest-utils xf86-video-vmware virtualbox-host-modules-arch mesa mesa-libglx"
+        ;;
+        vmware)
+            grafica="xf86-video-vmware xf86-input-vmmouse open-vm-tools net-tools gtkmm mesa mesa-libgl"
+        ;;
+        qemu)
+            grafica="spice-vdagent xf86-video-fbdev mesa mesa-libgl qemu-guest-agent"
+        ;;
+        kvm)
+            grafica="spice-vdagent xf86-video-fbdev mesa mesa-libgl qemu-guest-agent"
+        ;;
+        microsoft)
+            grafica="xf86-video-fbdev mesa-libgl"
+        ;;
+        xen)
+            grafica="xf86-video-fbdev mesa-libgl"
+        ;;
+        *)
+            if (lspci | grep VGA | grep "NVIDIA\|nVidia" &>/dev/null); then
+                grafica="xf86-video-nouveau mesa lib32-mesa mesa-vdpau libva-mesa-driver"
+                
+            elif (lspci | grep VGA | grep "Radeon R\|R2/R3/R4/R5" &>/dev/null); then
+                grafica="xf86-video-amdgpu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau libva-mesa-driver lib32-mesa-vdpau lib32-libva-mesa-driver libva-vdpau-driver libvdpau-va-gl libva-utils vdpauinfo opencl-mesa clinfo ocl-icd lib32-ocl-icd opencl-headers"
+
+            elif (lspci | grep VGA | grep "ATI\|AMD/ATI" &>/dev/null); then
+                grafica="xf86-video-ati mesa lib32-mesa mesa-vdpau libva-mesa-driver lib32-mesa-vdpau lib32-libva-mesa-driver libva-vdpau-driver libvdpau-va-gl libva-utils vdpauinfo opencl-mesa clinfo ocl-icd lib32-ocl-icd opencl-headers"
+
+             elif (lspci | grep VGA | grep "Intel" &>/dev/null); then
+                grafica="xf86-video-intel vulkan-intel mesa lib32-mesa intel-media-driver libva-intel-driver libva-vdpau-driver libvdpau-va-gl libva-utils vdpauinfo intel-compute-runtime beignet clinfo ocl-icd lib32-ocl-icd opencl-headers"
+                
+             else
+                grafica="xf86-video-vesa"
+            
+        fi
+        ;;
+    esac
+
+arch-chroot /mnt /bin/bash -c "pacman -S $grafica --noconfirm --needed"
+
 #DESMONTAR Y REINICIAR
 umount -R /mnt
 swapoff -a
       clear          
-      sleep 7
+      sleep 5
 reboot
