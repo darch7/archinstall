@@ -229,7 +229,6 @@ clear
 
 #USUARIO Y ADMIN
 arch-chroot /mnt /bin/bash -c "(echo $rootpasswd ; echo $rootpasswd) | passwd root"
-arch-chroot /mnt /bin/bash -c "groupadd wheel"
 arch-chroot /mnt /bin/bash -c "useradd -m -g users -G wheel -s /bin/bash $user"
 arch-chroot /mnt /bin/bash -c "(echo $userpasswd ; echo $userpasswd) | passwd $user"
 
