@@ -6,8 +6,8 @@ para seleccionar el disco si o si debe ser asi /dev/sda ; /dev/sdb/ ,etc, sino s
 para ejecutar el script      ./darch
 
 
-nota: el script esta solo para intel si tienes amd nvidia o otros debes descomentar en el script lo que quieres instalar no me gaste en un menu porque es para uso personal. Todo lo que instala aparecera en la tty. Ya viene con codecs y controadores para ceulares, codecs multimedia, xorg y drivers wifi.
-al terminar el script tendras una instalación de arch linux puro sin entorno grafico. Listo para un wm o un DE a eleccion del usuario.
+nota: el instalador trae para detectar automaticamente los drivers para la gpu y video . Todo lo que instala aparecera en la tty. Ya viene con codecs y controadores para ceulares, codecs multimedia, xorg y drivers wifi.
+al terminar el script tendras una instalación de arch linux puro sin entorno grafico y con un kernel lts (a mi criterio el mejor mas para algo mas serio como trabajar por ej). Listo para un wm o un DE a eleccion del usuario.
 
-
+cualquier bug pudes reportarlo a @darch_7
 creditos @hector_vega @Bourne_Again
