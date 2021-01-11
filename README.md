@@ -10,4 +10,7 @@ nota: el instalador trae para detectar automaticamente los drivers para la gpu y
 al terminar el script tendras una instalación de arch linux puro sin entorno grafico y con un kernel lts (a mi criterio el mejor mas para algo mas serio como trabajar por ej). Listo para un wm o un DE a eleccion del usuario.
 
 cualquier bug pudes reportarlo a @darch_7
+
+
+
 creditos @hector_vega @Bourne_Again
