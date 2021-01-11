@@ -44,7 +44,8 @@ read -p "Introduce Nombre del Equipo (host): " hostname
 echo ""
 read -p "Introduce tu ubicación, Ejemplo (es_PE.UTF-8 / es_MX.UTF-8 / es_AR.UTF-8): " userpais
 echo ""
-echo ''
+read -p "Introduce la distribucion de tu teclado, Ejemplo (es / latam / us): " teclado
+echo ""
 echo "Selección de Disco: $disco"
 echo ''
 echo "USUARIO: $user"
@@ -260,7 +261,7 @@ arch-chroot /mnt /bin/bash -c "pacman -Sy curl --noconfirm"
 arch-chroot /mnt /bin/bash -c "ln -sf /usr/share/zoneinfo/$(curl https://ipapi.co/timezone) /etc/localtime"
 
 #OPCIONAL
-echo "KEYMAP=es" > /mnt/etc/vconsole.conf 
+echo "KEYMAP="$teclado"" > /mnt/etc/vconsole.conf 
 cat /mnt/etc/vconsole.conf 
 clear
 
@@ -375,13 +376,13 @@ arch-chroot /mnt /bin/bash -c "pacman -S ttf-dejavu ttf-liberation xorg-fonts-ty
 	  clear
             keymap="latam"
 
-      arch-chroot /mnt /bin/bash -c "localectl --no-convert set-x11-keymap $keymap"
-      arch-chroot /mnt /bin/bash -c "setxkbmap -layout $keymap"
+      arch-chroot /mnt /bin/bash -c "localectl --no-convert set-x11-keymap "$teclado""
+      arch-chroot /mnt /bin/bash -c "setxkbmap -layout "$teclado""
 
       echo -e 'Section "InputClass"' > /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
       echo -e 'Identifier "system-keyboard"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
       echo -e 'MatchIsKeyboard "on"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-      echo -e 'Option "XkbLayout" "latam"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
+      echo -e 'Option "XkbLayout" "'$teclado'"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
       echo -e 'EndSection' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
       echo ""
       cat /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
