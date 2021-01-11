@@ -363,7 +363,7 @@ sleep 3
 arch-chroot /mnt /bin/bash -c "pacman -S pulseaudio pulseaudio-alsa pavucontrol alsa-plugins alsa-utils --noconfirm"
 
 #FONTS (TIPOGRAFIAS)
-arch-chroot /mnt /bin/bash -c "pacman -S ttf-dejavu ttf-liberation xorg-fonts-type1 ttf-bitstream-vera gnu-free-fonts ttf-hack ttf-inconsolata --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -S ttf-dejavu ttf-liberation xorg-fonts-type1 ttf-bitstream-vera gnu-free-fonts --noconfirm"
 
 #NAVEGADOR WEB
 #arch-chroot /mnt /bin/bash -c "pacman -S chromium --noconfirm"
