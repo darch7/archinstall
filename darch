@@ -373,7 +373,8 @@ arch-chroot /mnt /bin/bash -c "pacman -S ttf-dejavu ttf-liberation xorg-fonts-ty
 #vivaldi
 
 #ESTABLECER FORMATO DE TECLADO
-	  clear
+	   clear
+            	keymap="$teclado"
         
       arch-chroot /mnt /bin/bash -c "localectl --no-convert set-x11-keymap "$teclado""
       arch-chroot /mnt /bin/bash -c "setxkbmap -layout "$teclado""
