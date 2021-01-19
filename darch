@@ -34,13 +34,13 @@ echo "print devices" | parted | grep /dev/ | awk '{if (NR!=1) {print}}'
 echo ''
 read -p "Introduce tu disco a instalar Arch: " disco
 echo ""
-read -p "Introduce la clave Root: " rootpasswd
+read -p "Introduce NOMBRE DEL EQUIPO (host): " hostname
 echo ""
-read -p "Introduce Nombre usuario Nuevo: " user
+read -p "Introduce la clave ROOT: " rootpasswd
 echo ""
-read -p "Introduce la clave de $user: " userpasswd
+read -p "Introduce Nombre de USUARIO Nuevo: " user
 echo ""
-read -p "Introduce Nombre del Equipo (host): " hostname
+read -p "Introduce la CLAVE de $user: " userpasswd
 echo ""
 read -p "Introduce tu ubicación, Ejemplo (es_PE.UTF-8 / es_MX.UTF-8 / es_AR.UTF-8): " userpais
 echo ""
