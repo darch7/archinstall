@@ -375,13 +375,25 @@ arch-chroot /mnt /bin/bash -c "pacman -S ttf-dejavu ttf-liberation xorg-fonts-ty
 #ESTABLECER FORMATO DE TECLADO
 	   clear
         
+case $teclado in
+ 
+	latam) teclado-tty=la-latin1
+	;;
+	
+	es) teclado-tty=es
+	;;
+	
+	*) teclado-tty=$teclado
+	;;
+esac
+ 
       arch-chroot /mnt /bin/bash -c "localectl --no-convert set-x11-keymap "$teclado""
       arch-chroot /mnt /bin/bash -c "setxkbmap -layout "$teclado""
 
       echo -e 'Section "InputClass"' > /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
       echo -e 'Identifier "system-keyboard"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
       echo -e 'MatchIsKeyboard "on"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-      echo -e 'Option "XkbLayout" "'$tty'"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
+      echo -e 'Option "XkbLayout" "'$teclado-tty'"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
       echo -e 'EndSection' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
       echo ""
       cat /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
