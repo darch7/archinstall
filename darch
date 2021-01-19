@@ -380,7 +380,7 @@ case $teclado in
 	latam) teclado-tty=la-latin1
 	;;
 	
-	es) teclado-tty=es
+	es) teclado-tty=la-latin1
 	;;
 	
 	*) teclado-tty=$teclado
