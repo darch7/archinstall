@@ -1,5 +1,7 @@
 #darchinstall 
 nota:
+
+
 pacman -Sy git wget
 
 cd darchinstall
