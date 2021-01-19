@@ -1,9 +1,13 @@
 #darchinstall 
 nota:
-para seleccionar el disco si o si debe ser asi /dev/sda ; /dev/sdb/ ,etc, sino se escribe tal cual dara error
+pacman -Sy git wget
 
+cd darchinstall
 
 para ejecutar el script      ./darch
+
+
+para seleccionar el disco si o si debe ser asi /dev/sda ; /dev/sdb/ ,etc, sino se escribe tal cual dara error
 
 
 nota: el instalador trae para detectar automaticamente los drivers para la gpu y video . Todo lo que instala aparecera en la tty. Ya viene con codecs y controadores para ceulares, codecs multimedia, xorg y drivers wifi.
