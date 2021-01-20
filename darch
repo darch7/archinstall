@@ -261,9 +261,6 @@ arch-chroot /mnt /bin/bash -c "pacman -Sy curl --noconfirm"
 arch-chroot /mnt /bin/bash -c "ln -sf /usr/share/zoneinfo/$(curl https://ipapi.co/timezone) /etc/localtime"
 
 #OPCIONAL
-echo "KEYMAP="$teclado"" > /mnt/etc/vconsole.conf 
-cat /mnt/etc/vconsole.conf 
-clear
 
 arch-chroot /mnt /bin/bash -c "timedatectl set-timezone $(curl https://ipapi.co/timezone)"
 arch-chroot /mnt /bin/bash -c "pacman -S ntp --noconfirm"
@@ -373,28 +370,22 @@ arch-chroot /mnt /bin/bash -c "pacman -S ttf-dejavu ttf-liberation xorg-fonts-ty
 #vivaldi
 
 #ESTABLECER FORMATO DE TECLADO
-	   clear
+clear
         
 case $teclado in
  
-	latam) teclado-tty=la-latin1
+	latam) teclado-tty="la-latin1"
 	;;
-	
-	es) teclado-tty=la-latin1
-	;;
-	
+		
 	*) teclado-tty=$teclado
 	;;
 esac
  
-      arch-chroot /mnt /bin/bash -c "localectl --no-convert set-x11-keymap "$teclado""
-      arch-chroot /mnt /bin/bash -c "setxkbmap -layout "$teclado""
-
-      echo -e 'Section "InputClass"' > /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-      echo -e 'Identifier "system-keyboard"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-      echo -e 'MatchIsKeyboard "on"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-      echo -e 'Option "XkbLayout" "'$teclado-tty'"' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
-      echo -e 'EndSection' >> /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
+echo "KEYMAP=$teclado-tty" > /mnt/etc/vconsole.conf
+cat /mnt/etc/vconsole.conf 
+clear
+ 
+      arch-chroot /mnt /bin/bash -c "localectl --no-convert set-x11-keymap "$teclado""            
       echo ""
       cat /mnt/etc/X11/xorg.conf.d/00-keyboard.conf
       sleep 3
