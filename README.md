@@ -20,3 +20,7 @@ cualquier bug pudes reportarlo a @darch_7
 
 
 creditos @hector_vega @Bourne_Again
+
+
+
+![captura-pantalla-210119-2317-16](https://user-images.githubusercontent.com/70046164/105121824-c541c600-5ab3-11eb-9b7b-d3889715f54b.png)
