@@ -340,11 +340,11 @@ arch-chroot /mnt /bin/bash -c "pacman -S wireless_tools wpa_supplicant wireless-
 arch-chroot /mnt /bin/bash -c "pacman -S bluez bluez-utils pulseaudio-bluetooth --noconfirm"
 
 #SHELL
-#arch-chroot /mnt /bin/bash -c "pacman -S zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions --noconfirm"
-#SH=zsh
-#arch-chroot /mnt /bin/bash -c "chsh -s /bin/$SH"
-#arch-chroot /mnt /bin/bash -c "chsh -s /usr/bin/$SH $user"
-#arch-chroot /mnt /bin/bash -c "chsh -s /bin/$SH $user"
+arch-chroot /mnt /bin/bash -c "pacman -S zsh zsh-autosuggestions zsh-history-substring-search zsh-completions zsh-syntax-highlighting --noconfirm"
+SH=zsh
+arch-chroot /mnt /bin/bash -c "chsh -s /bin/$SH"
+arch-chroot /mnt /bin/bash -c "chsh -s /usr/bin/$SH $user"
+arch-chroot /mnt /bin/bash -c "chsh -s /bin/$SH $user"
 
 #INSTALACION DE SERVIDOR X
 arch-chroot /mnt /bin/bash -c "pacman -S xorg-server xorg-apps xorg-xinit --noconfirm"
