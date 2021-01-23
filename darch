@@ -402,10 +402,10 @@ sed -i "82c %wheel ALL=(ALL) ALL"  /mnt/etc/sudoers
 
 case $(systemd-detect-virt) in
         oracle)
-            grafica="virtualbox-guest-utils xf86-video-vmware virtualbox-host-modules-arch mesa mesa-libglx"
+            grafica="virtualbox-guest-utils xf86-video-vmware virtualbox-host-modules-arch mesa"
         ;;
         vmware)
-            grafica="xf86-video-vmware xf86-input-vmmouse open-vm-tools net-tools gtkmm mesa mesa-libgl"
+            grafica="xf86-video-vmware xf86-input-vmmouse open-vm-tools net-tools gtkmm mesa"
         ;;
         qemu)
             grafica="spice-vdagent xf86-video-fbdev mesa mesa-libgl qemu-guest-agent"
