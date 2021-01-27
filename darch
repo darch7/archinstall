@@ -327,8 +327,9 @@ fi
 
 #INSTALACION DE SOFTWARE PERSONAL
 arch-chroot /mnt /bin/bash -c "pacman -S dhcpcd networkmanager net-tools ifplugd --noconfirm"
+
 #ACTIVAR SERVICIOS
-arch-chroot /mnt /bin/bash -c "systemctl enable dhcpcd NetworkManager ntpd"
+arch-chroot /mnt /bin/bash -c "systemctl enable dhcpcd NetworkManager ntpd bluetooth"
 
 echo "noipv6rs" >> /mnt/etc/dhcpcd.conf
 echo "noipv6" >> /mnt/etc/dhcpcd.conf
