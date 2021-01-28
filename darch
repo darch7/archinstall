@@ -325,20 +325,20 @@ echo '> Confirme tener las IMG de linux para el arranque'
 echo 
 fi
 
-#INSTALACION DE SOFTWARE PERSONAL
+#INSTALACION DE WIFI
 arch-chroot /mnt /bin/bash -c "pacman -S dhcpcd networkmanager net-tools ifplugd --noconfirm"
-
-#ACTIVAR SERVICIOS
-arch-chroot /mnt /bin/bash -c "systemctl enable dhcpcd NetworkManager ntpd bluetooth"
-
-echo "noipv6rs" >> /mnt/etc/dhcpcd.conf
-echo "noipv6" >> /mnt/etc/dhcpcd.conf
 
 #INSTALACION DE DRIVERS WIFI
 arch-chroot /mnt /bin/bash -c "pacman -S wireless_tools wpa_supplicant wireless-regdb --noconfirm"
 
 #INSTALACION DE DRIVERS BLUETOOTH
 arch-chroot /mnt /bin/bash -c "pacman -S bluez bluez-utils pulseaudio-bluetooth --noconfirm"
+
+#ACTIVAR SERVICIOS
+arch-chroot /mnt /bin/bash -c "systemctl enable dhcpcd NetworkManager ntpd bluetooth"
+
+echo "noipv6rs" >> /mnt/etc/dhcpcd.conf
+echo "noipv6" >> /mnt/etc/dhcpcd.conf
 
 #SHELL
 arch-chroot /mnt /bin/bash -c "pacman -S zsh-autosuggestions zsh-history-substring-search zsh-completions zsh-syntax-highlighting --noconfirm"
