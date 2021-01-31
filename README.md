@@ -3,7 +3,7 @@ nota:
 
 pacman -Sy git wget
 
-cd darchinstall
+cd archinstall
 
 para ejecutar el script      ./darch
 
