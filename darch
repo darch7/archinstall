@@ -76,7 +76,7 @@ then
 	sgdisk --zap-all ${disco}
 	parted ${disco} mklabel gpt
 	sgdisk ${disco} -n=1:0:+100M -t=1:ef00
-	sgdisk ${disco} -n=2:0:+2G -t=2:8200
+	sgdisk ${disco} -n=2:0:+4G -t=2:8200
 	sgdisk ${disco} -n=3:0:0
 	fdisk -l ${disco} > /tmp/partition
 	echo ""
