@@ -455,7 +455,13 @@ arch-chroot /mnt /bin/bash -c "pacman -S $grafica --noconfirm --needed"
 #DESMONTAR Y REINICIAR
 umount -R /mnt
 swapoff -a
-      clear 
-      echo "Arch Linux Instalado"               
-      sleep 3
+
+clear 
+neofetch
+sleep 5
+uname -r 
+sleep 3
+
+echo "Arch Linux instalado"
+sleep 5
 reboot
