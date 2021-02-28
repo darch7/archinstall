@@ -1,7 +1,7 @@
 #darchinstall 
 nota:
 
-pacman -Sy git wget
+pacman -Sy glibc git wget
 
 cd archinstall
 
