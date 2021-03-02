@@ -280,11 +280,12 @@ sleep 2
 
 clear
 
-#INSTALACION DEL KERNEL
+#INSTALACION DE KERNEL
 arch-chroot /mnt /bin/bash -c "pacman -S linux-lts linux-firmware linux-lts-headers mkinitcpio --noconfirm"
 
-#arch-chroot /mnt /bin/bash -c "pacman -S gnome-shell gdm gnome-control-center gnome-backgrounds gnome-tweaks --noconfirm"
-#arch-chroot /mnt /bin/bash -c "systemctl enable gdm"
+#INSTALACION GNOME MINIMAL
+arch-chroot /mnt /bin/bash -c "pacman -S gnome-shell gdm gnome-control-center gnome-backgrounds gnome-tweaks --noconfirm"
+arch-chroot /mnt /bin/bash -c "systemctl enable gdm"
 
 uefi=$( ls /sys/firmware/efi/ | grep -ic efivars )
 
