@@ -47,7 +47,7 @@ read -p "$(echo -e "\e[92mIntroduce NOMBRE DEL EQUIPO (host): \e[0m")" hostname
 echo ""
 read -p "$(echo -e "\e[91mIntroduce la clave ROOT: \e[0m")" rootpasswd
 echo ""
-read -p "$(echo -e "\e[92Introduce Nombre de USUARIO Nuevo: \e[0m")" user
+read -p "$(echo -e "\e[92mIntroduce Nombre de USUARIO Nuevo: \e[0m")" user
 echo ""
 read -p "$(echo -e "\e[91mIntroduce la CLAVE de $user: \e[0m")" userpasswd
 echo ""
@@ -64,9 +64,6 @@ echo ''
 echo "CLAVE DE ADMINISTRADOR: $rootpasswd"
 sleep 2
 echo ''
-
-
-read -p "$(echo -e "\e[34mIntroduce tu disco a instalar Arch: \e[0m")" disco
 
 uefi=$( ls /sys/firmware/efi/ | grep -ic efivars )
 
