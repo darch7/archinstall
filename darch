@@ -41,19 +41,19 @@ clear
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
 echo "print devices" | parted | grep /dev/ | awk '{if (NR!=1) {print}}'
 echo ''
-read -p "Introduce tu disco a instalar Arch: " disco
+read -p "$(echo -e "\e[96mIntroduce tu disco a instalar Arch: \e[0m")" disco
 echo ""
-read -p "Introduce NOMBRE DEL EQUIPO (host): " hostname
+read -p "$(echo -e "\e[92mIntroduce NOMBRE DEL EQUIPO (host): \e[0m")" hostname
 echo ""
-read -p "Introduce la clave ROOT: " rootpasswd
+read -p "$(echo -e "\e[91mIntroduce la clave ROOT: \e[0m")" rootpasswd
 echo ""
-read -p "Introduce Nombre de USUARIO Nuevo: " user
+read -p "$(echo -e "\e[92Introduce Nombre de USUARIO Nuevo: \e[0m")" user
 echo ""
-read -p "Introduce la CLAVE de $user: " userpasswd
+read -p "$(echo -e "\e[91mIntroduce la CLAVE de $user: \e[0m")" userpasswd
 echo ""
-read -p "Introduce tu ubicación, Ejemplo (es_PE.UTF-8 / es_MX.UTF-8 / es_AR.UTF-8): " userpais
+read -p "$(echo -e "\e[96mIntroduce tu ubicación, Ejemplo (es_PE.UTF-8 / es_MX.UTF-8 / es_AR.UTF-8): \e[0m")" userpais
 echo ""
-read -p "Introduce la distribucion de tu teclado, Ejemplo (es / latam / us): " teclado
+read -p "$(echo -e "\e[96mIntroduce la distribucion de tu teclado, Ejemplo (es / latam / us): \e[0m")" teclado
 echo ""
 echo "Selección de Disco: $disco"
 echo ''
@@ -64,6 +64,9 @@ echo ''
 echo "CLAVE DE ADMINISTRADOR: $rootpasswd"
 sleep 2
 echo ''
+
+
+read -p "$(echo -e "\e[34mIntroduce tu disco a instalar Arch: \e[0m")" disco
 
 uefi=$( ls /sys/firmware/efi/ | grep -ic efivars )
 
