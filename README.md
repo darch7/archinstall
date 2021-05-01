@@ -1,4 +1,7 @@
 #darchinstall 
+
+Donaciones para un nuevo mate: https://paypal.me/darch7
+
 nota:
 
 pacman -Sy glibc git wget
