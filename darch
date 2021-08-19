@@ -322,6 +322,7 @@ arch-chroot /mnt /bin/bash -c "grub-install --target=i386-pc $disco"
 
 ######
 sed -i "6iGRUB_CMDLINE_LINUX_DEFAULT="loglevel=3"" /mnt/etc/default/grub
+sed -i "2iGRUB_DISABLE_OS_PROBER=false" /mnt/etc/default/grub
 sed -i '7d' /mnt/etc/default/grub
 ######
 echo ''
