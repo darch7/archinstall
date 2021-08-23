@@ -99,26 +99,34 @@ then
 	echo "Partición ROOT es:"
 	cat root-efi
 	echo ""
-	echo "Partición HOME es:"
-	cat home-efi
 	sleep 2
 
 	clear
 	echo ""
 	echo "Formateando Particiones"
 	echo ""
-	mkfs.ext4 $(cat root-efi) 
+	mkfs.btrfs -f -L "root" -n 32k $(cat root-efi) 
 	mount $(cat root-efi) /mnt 
+	btrfs subvolume create /mnt/@
+	btrfs subvolume create /mnt/@home
+	btrfs subvolume create /mnt/@var_log
+	btrfs subvolume create /mnt/@var_tmp
+	btrfs subvolume create /mnt/@snapshots
+	btrfs subvolume list -p /mnt
 
-	mkdir -p /mnt/home
-	mkfs.ext4 $(cat home-efi) 
-	mount $(cat home-efi) /mnt/home
+	mount -o noatime,compress=lzo,space_cache,subvol=@ $(cat root-efi)
+	mkdir -p /mnt/{boot,home,var/{log,tmp},.snapshots} 
+
+	mount -o noatime,compress=lzo,space_cache,subvol=@home $(cat root-efi) /mnt/home
+	mount -o noatime,compress=lzo,space_cache,subvol=@var_log $(cat root-efi) /mnt/var/log
+	mount -o noatime,compress=lzo,space_cache,subvol=@var_tmp $(cat root-efi) /mnt/var/tmp
+	mount -o noatime,compress=lzo,space_cache,subvol=@snapshots $(cat root-efi) /mnt/.snapshots
 
 	mkdir -p /mnt/efi 
 	mkfs.fat -F 32 $(cat boot-efi) 
 	mount $(cat boot-efi) /mnt/efi 
 
-	mkswap $(cat swap-efi) 
+	mkswap -L $(cat swap-efi) 
 	swapon $(cat swap-efi)
 
 	clear
