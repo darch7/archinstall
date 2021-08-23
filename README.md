@@ -19,7 +19,7 @@ para seleccionar el disco si o si debe ser asi /dev/sda ; /dev/sdb ,etc, sino se
 
 
 nota: el instalador trae para detectar automaticamente los drivers para la gpu y video . Todo lo que instala aparecerá en la tty. Ya viene con codecs y controadores para celulares, codecs multimedia, xorg y drivers wifi.
-al terminar el script tendras una instalación de arch linux puro sin entorno grafico y con un kernel lts (a mi criterio el mejor mas para algo mas serio como trabajar por ej). Listo para un wm o un DE a eleccion del usuario.
+al terminar el script tendras una instalación de arch linux puro sin entorno grafico y con un kernel lts (a mi criterio el mejor mas para algo mas serio como trabajar por ej), con un esquema de btrfs apto ya para snapshots y tambien para dualboots deberia detectarlo automaticamente Listo para un wm o un DE a eleccion del usuario.
 
 
 #Opcional
