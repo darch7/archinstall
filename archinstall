@@ -174,8 +174,22 @@ else
 	echo ""
 	echo "Formateando Particiones"
 	echo ""
-	mkfs.ext4 $(cat root-bios) 
-	mount $(cat root-bios) /mnt 
+	mkfs.btrfs -f -L "root" -n 32k $(cat root-bios) 
+	mount $(cat root-bios)  /mnt 
+	btrfs subvolume create /mnt/@
+	btrfs subvolume create /mnt/@home
+	btrfs subvolume create /mnt/@var_log
+	btrfs subvolume create /mnt/@var_tmp
+	btrfs subvolume create /mnt/@snapshots
+	btrfs subvolume list -p /mnt
+
+	mount -o noatime,compress=lzo,space_cache,subvol=@ $(cat root-bios) 
+	mkdir -p /mnt/{boot,home,var/{log,tmp},.snapshots} 
+
+	mount -o noatime,compress=lzo,space_cache,subvol=@home $(cat root-bios)  /mnt/home
+	mount -o noatime,compress=lzo,space_cache,subvol=@var_log $(cat root-bios)  /mnt/var/log
+	mount -o noatime,compress=lzo,space_cache,subvol=@var_tmp $(cat root-bios)  /mnt/var/tmp
+	mount -o noatime,compress=lzo,space_cache,subvol=@snapshots $(cat root-bios)  /mnt/.snapshots 
 
 	mkdir -p /mnt/boot
 	mkfs.ext4 $(cat boot-bios) 
