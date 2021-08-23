@@ -126,7 +126,7 @@ then
 	mkfs.fat -F 32 $(cat boot-efi) 
 	mount $(cat boot-efi) /mnt/efi 
 
-	mkswap -L $(cat swap-efi) 
+	mkswap $(cat swap-efi) 
 	swapon $(cat swap-efi)
 
 	clear
