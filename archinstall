@@ -291,7 +291,7 @@ clear
 arch-chroot /mnt /bin/bash -c "pacman -Sy curl --noconfirm"
 arch-chroot /mnt /bin/bash -c "ln -sf /usr/share/zoneinfo/$(curl https://ipapi.co/timezone) /etc/localtime"
 
-#OPCIONAL
+#AJUSTE RELOJ 
 
 arch-chroot /mnt /bin/bash -c "timedatectl set-timezone $(curl https://ipapi.co/timezone)"
 arch-chroot /mnt /bin/bash -c "pacman -S ntp --noconfirm"
@@ -314,6 +314,9 @@ uefi=$( ls /sys/firmware/efi/ | grep -ic efivars )
 if [ $uefi == 1 ]
 then
 clear
+
+##INSTALACION DEL GRUB-EFI
+
 arch-chroot /mnt /bin/bash -c "pacman -S grub efibootmgr os-prober dosfstools ntfs-3g --noconfirm"
 echo '' 
 echo 'Instalando EFI System >> bootx64.efi' 
@@ -321,10 +324,14 @@ arch-chroot /mnt /bin/bash -c 'grub-install --target=x86_64-efi --efi-directory=
 echo '' 
 echo 'Instalando UEFI System >> grubx64.efi' 
 arch-chroot /mnt /bin/bash -c 'grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=Arch'
+
+### ENVIAR PARAMETROS AL GRUB
 ######
 sed -i "6iGRUB_CMDLINE_LINUX_DEFAULT="loglevel=3"" /mnt/etc/default/grub
+sed -i "2i GRUB_DISABLE_OS_PROBER=false" /mnt/etc/default/grub
 sed -i '7d' /mnt/etc/default/grub
 ######
+
 echo ''
 arch-chroot /mnt /bin/bash -c "grub-mkconfig -o /boot/grub/grub.cfg"
 echo '' 
@@ -338,15 +345,19 @@ sleep 2
 
 else
 clear
+
+## INSTALACION GRUB-BIOS
+
 arch-chroot /mnt /bin/bash -c "pacman -S grub os-prober ntfs-3g --noconfirm"
 echo '' 
 arch-chroot /mnt /bin/bash -c "grub-install --target=i386-pc $disco"
 
-######
+#######
 sed -i "6iGRUB_CMDLINE_LINUX_DEFAULT="loglevel=3"" /mnt/etc/default/grub
-sed -i "2iGRUB_DISABLE_OS_PROBER=false" /mnt/etc/default/grub
+sed -i "2i GRUB_DISABLE_OS_PROBER=false" /mnt/etc/default/grub
 sed -i '7d' /mnt/etc/default/grub
 ######
+
 echo ''
 arch-chroot /mnt /bin/bash -c "grub-mkconfig -o /boot/grub/grub.cfg"
 echo '' 
@@ -394,12 +405,6 @@ arch-chroot /mnt /bin/bash -c "pacman -S pulseaudio pulseaudio-alsa pavucontrol 
 #FONTS (TIPOGRAFIAS)
 arch-chroot /mnt /bin/bash -c "pacman -S ttf-dejavu ttf-liberation xorg-fonts-type1 ttf-bitstream-vera gnu-free-fonts --noconfirm"
 
-#NAVEGADOR WEB
-#arch-chroot /mnt /bin/bash -c "pacman -S chromium --noconfirm"
-#chromium
-#opera
-#vivaldi
-
 #ESTABLECER FORMATO DE TECLADO
 clear
         
@@ -429,7 +434,7 @@ clear
       sleep 2
       clear
       
-# INSTALAR YAY
+# INSTALAR PARU	(AUR HELPER)
 echo "cd && git clone https://aur.archlinux.org/paru && cd paru && makepkg -si --noconfirm && cd && rm -rf paru" | arch-chroot /mnt /bin/bash -c "su $user"
 sed -i "82c %wheel ALL=(ALL) ALL"  /mnt/etc/sudoers
 
@@ -477,7 +482,7 @@ case $(systemd-detect-virt) in
 arch-chroot /mnt /bin/bash -c "pacman -S $grafica --noconfirm --needed"
 
 clear
-neofetch
+arch-chroot /mnt /bin/bash -c "neofetch"
 sleep 5
 uname -r 
 sleep 3

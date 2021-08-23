@@ -8,7 +8,7 @@
 
 nota:
 
-pacman -Sy glibc git wget
+pacman -Sy git wget
 
 cd archinstall
 
