@@ -330,7 +330,7 @@ arch-chroot /mnt /bin/bash -c "grub-install --target=i386-pc $disco"
 
 ######
 sed -i "6iGRUB_CMDLINE_LINUX_DEFAULT="loglevel=3"" /mnt/etc/default/grub
-sed -i "2iGRUB_DISABLE_OS_PROBER=false" /mnt/etc/default/grub
+sed -i "2i GRUB_DISABLE_OS_PROBER=false" /mnt/etc/default/grub
 sed -i '7d' /mnt/etc/default/grub
 ######
 echo ''
@@ -415,7 +415,7 @@ clear
       sleep 2
       clear
       
-# INSTALAR YAY
+# INSTALAR PARU	(AUR HELPER)
 echo "cd && git clone https://aur.archlinux.org/paru && cd paru && makepkg -si --noconfirm && cd && rm -rf paru" | arch-chroot /mnt /bin/bash -c "su $user"
 sed -i "82c %wheel ALL=(ALL) ALL"  /mnt/etc/sudoers
 
@@ -463,7 +463,7 @@ case $(systemd-detect-virt) in
 arch-chroot /mnt /bin/bash -c "pacman -S $grafica --noconfirm --needed"
 
 clear
-neofetch
+arch-chroot /mnt /bin/bash -c "neofetch"
 sleep 5
 uname -r 
 sleep 3
