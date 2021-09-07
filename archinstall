@@ -400,7 +400,7 @@ arch-chroot /mnt /bin/bash -c "ls -l /home/$user"
 sleep 2
 
 #AUDIO
-arch-chroot /mnt /bin/bash -c "pacman -S pulseaudio pulseaudio-alsa pavucontrol alsa-plugins alsa-utils --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -S pipewire gst-plugin-pipewire pipewire-alsa pipewire-jack pipewire-media-session pipewire-pulse pipewire-zeroconf --noconfirm"
 
 #FONTS (TIPOGRAFIAS)
 arch-chroot /mnt /bin/bash -c "pacman -S ttf-dejavu ttf-liberation xorg-fonts-type1 ttf-bitstream-vera gnu-free-fonts --noconfirm"
@@ -480,6 +480,7 @@ case $(systemd-detect-virt) in
     esac
 
 arch-chroot /mnt /bin/bash -c "pacman -S $grafica --noconfirm --needed"
+arch-chroot /mnt /bin/bash -c "paru -Sy pipewire-jack-dropin --noconfirm --needed"
 
 clear
 arch-chroot /mnt /bin/bash -c "neofetch"
