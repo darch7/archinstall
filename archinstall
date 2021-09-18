@@ -376,7 +376,7 @@ arch-chroot /mnt /bin/bash -c "pacman -S dhcpcd networkmanager net-tools ifplugd
 arch-chroot /mnt /bin/bash -c "pacman -S wireless_tools wpa_supplicant wireless-regdb --noconfirm"
 
 #INSTALACION DE DRIVERS BLUETOOTH
-arch-chroot /mnt /bin/bash -c "pacman -S bluez bluez-utils pulseaudio-bluetooth --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -S bluez bluez-utils --noconfirm"
 
 #ACTIVAR SERVICIOS
 arch-chroot /mnt /bin/bash -c "systemctl enable dhcpcd NetworkManager ntpd"
