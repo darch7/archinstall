@@ -480,7 +480,6 @@ case $(systemd-detect-virt) in
     esac
 
 arch-chroot /mnt /bin/bash -c "pacman -S $grafica --noconfirm --needed"
-arch-chroot /mnt /bin/bash -c "paru -Sy pipewire-jack-dropin --noconfirm --needed"
 
 clear
 arch-chroot /mnt /bin/bash -c "neofetch"
