@@ -435,7 +435,7 @@ clear
       clear
       
 # INSTALAR PARU	(AUR HELPER)
-echo "cd && git clone https://aur.archlinux.org/paru && cd paru && makepkg -si --noconfirm && cd && rm -rf paru" | arch-chroot /mnt /bin/bash -c "su $user"
+echo "cd && git clone https://aur.archlinux.org/paru-bin.git && cd paru-bin && makepkg -si --noconfirm && cd && rm -rf paru-bin" | arch-chroot /mnt /bin/bash -c "su $user"
 sed -i "82c %wheel ALL=(ALL) ALL"  /mnt/etc/sudoers
 
 #INSTALACION DE DRIVERS DE VIDEO
