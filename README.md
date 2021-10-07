@@ -12,7 +12,7 @@ pacman -Sy git wget
 
 cd archinstall
 
-para ejecutar el script      ./darch
+para ejecutar el script      ./archinstall
 
 
 para seleccionar el disco si o si debe ser asi /dev/sda ; /dev/sdb ,etc, sino se escribe tal cual dara error
